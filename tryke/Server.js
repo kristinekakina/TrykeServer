@@ -2,7 +2,11 @@ const http = require('http');
 
 const server = http.createServer((req, res) => {
     // Set the response headers
+
+    // this header shows the type of content that will be allowed in the server.
     res.setHeader('Content-Type', 'text/plain');
+
+    // Access-Control-Allow-Origin allows to control which origins can access the server.
     res.setHeader('Access-Control-Allow-Origin', '*');
 
     // printing to console when request is recieved
@@ -12,7 +16,7 @@ const server = http.createServer((req, res) => {
     if (req.method === 'POST') {
         let body = '';
 
-        // Accumulate the data chunks of the request
+        // To process the data as a whole we group the data into grouped_data
         req.on('data', grouped_data => {
             body += grouped_data.toString();
         });
